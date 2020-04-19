@@ -72,4 +72,14 @@ public class StockController {
 		return obj;
 	}
 
+	public boolean chekStockIdAvailability(int Stock_id) throws Exception {
+		con.getConnection();
+		boolean idAvaliabillity = true;
+		ResultSet rset = con.srh("SELECT * FROM stock WHERE Stock_id='" + Stock_id + "'");
+		while (rset.next()) {
+			idAvaliabillity = false;
+		}
+		return idAvaliabillity;
+	}
+
 }

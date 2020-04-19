@@ -78,4 +78,14 @@ public class DoctorController {
 		}
 		return obj;
 	}
+
+	public boolean chekDoctorIdAvailability(int doc_id) throws Exception {
+		con.getConnection();
+		boolean idAvaliabillity = true;
+		ResultSet rset = con.srh("SELECT * FROM doctor WHERE doc_id='" + doc_id + "'");
+		while (rset.next()) {
+			idAvaliabillity = false;
+		}
+		return idAvaliabillity;
+	}
 }

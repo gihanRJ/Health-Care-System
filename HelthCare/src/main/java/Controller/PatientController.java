@@ -23,16 +23,16 @@ public class PatientController {
 
 	public void save(PatientModel obj) throws Exception {
 		con.getConnection();
-		con.aud("INSERT INTO patient(name,age,email,address,phoneNo) VALUES ('" + obj.getName() + "', " + "'"
-				+ obj.getAge() + "', '" + obj.getEmail() + "', '" + obj.getAddress() + "', '" + obj.getPhoneNo()
-				+ "')");
+		con.aud("INSERT INTO patient(name,age,email,address,phoneNo,Stock_id) VALUES ('" + obj.getName() + "', " + "'"
+				+ obj.getAge() + "', '" + obj.getEmail() + "', '" + obj.getAddress() + "', '" + obj.getPhoneNo() + "','"
+				+ obj.getStock_id() + "')");
 	}
 
 	public void update(PatientModel obj) throws Exception {
 		con.getConnection();
 		con.aud("UPDATE patient SET name = '" + obj.getName() + "', age = '" + obj.getAge() + "', email = '"
-				+ obj.getEmail() + "'," + "address = '" + obj.getAddress() + "', phoneNo='" + obj.getPhoneNo() + "' "
-				+ "WHERE PatientID='" + obj.getPatientID() + "'");
+				+ obj.getEmail() + "'," + "address = '" + obj.getAddress() + "', phoneNo='" + obj.getPhoneNo()
+				+ "', Stock_id='" + obj.getStock_id() + "'" + "WHERE PatientID='" + obj.getPatientID() + "'");
 	}
 
 	public void delete(PatientModel obj) throws Exception {
@@ -52,6 +52,7 @@ public class PatientController {
 			obj.setEmail(rset.getString(4));
 			obj.setAddress(rset.getString(5));
 			obj.setPhoneNo(rset.getString(6));
+			obj.setStock_id(rset.getInt(7));
 
 			list.add(obj);
 		}
@@ -70,9 +71,19 @@ public class PatientController {
 			obj.setEmail(rset.getString(4));
 			obj.setAddress(rset.getString(5));
 			obj.setPhoneNo(rset.getString(6));
+			obj.setStock_id(rset.getInt(7));
 
 		}
 		return obj;
+	}
+	public boolean chekPatientIdAvailability(int PatientID) throws Exception {
+		con.getConnection();
+		boolean idAvaliabillity = true;
+		ResultSet rset = con.srh("SELECT * FROM patient WHERE PatientID='" + PatientID + "'");
+		while (rset.next()) {
+			idAvaliabillity = false;
+		}
+		return idAvaliabillity;
 	}
 
 }

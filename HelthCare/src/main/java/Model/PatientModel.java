@@ -11,12 +11,14 @@ public class PatientModel {
 	private String email;
 	private String address;
 	private String phoneNo;
+	private int Stock_id;
 
 	public PatientModel() {
 		super();
 	}
 
-	public PatientModel(int patientID, String name, String age, String email, String address, String phoneNo) {
+	public PatientModel(int patientID, String name, String age, String email, String address, String phoneNo,
+			int stock_id) {
 		super();
 		PatientID = patientID;
 		this.name = name;
@@ -24,6 +26,7 @@ public class PatientModel {
 		this.email = email;
 		this.address = address;
 		this.phoneNo = phoneNo;
+		Stock_id = stock_id;
 	}
 
 	public int getPatientID() {
@@ -72,6 +75,14 @@ public class PatientModel {
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+
+	public int getStock_id() {
+		return Stock_id;
+	}
+
+	public void setStock_id(int stock_id) {
+		Stock_id = stock_id;
 	}
 
 	@Override

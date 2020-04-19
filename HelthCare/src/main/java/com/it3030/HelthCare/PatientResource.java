@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import Model.PatientModel;
 
 import Controller.PatientController;
+import Controller.StockController;
 
 @Path("patientResources")
 public class PatientResource {
@@ -34,15 +35,24 @@ public class PatientResource {
 	@POST
 	@Path("patient")
 	public String savePatient(PatientModel obj) throws Exception {
-		PatientController.getInstance().save(obj);
-		return "patient Saved";
+		if (StockController.getInstance().chekStockIdAvailability(obj.getStock_id())) {
+			return "stock id is not valid";
+		} else {
+			PatientController.getInstance().save(obj);
+			return "patient Saved";
+		}
+
 	}
 
 	@PUT
 	@Path("patient")
 	public String updatePatient(PatientModel obj) throws Exception {
-		PatientController.getInstance().update(obj);
-		return "patient Updated";
+		if (StockController.getInstance().search(obj.getStock_id()).getStock_id() == 0) {
+			return "stock id is not valid";
+		} else {
+			PatientController.getInstance().update(obj);
+			return "patient Updated";
+		}
 	}
 
 	@DELETE
