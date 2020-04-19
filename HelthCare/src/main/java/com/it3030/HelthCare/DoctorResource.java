@@ -2,6 +2,7 @@ package com.it3030.HelthCare;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,6 +35,7 @@ public class DoctorResource {
 
 	@POST
 	@Path("doctor")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String saveDoctor(DoctorModel obj) throws Exception {
 		DoctorController.getInstance().save(obj);
 		return "doctor Saved";
@@ -41,6 +43,7 @@ public class DoctorResource {
 
 	@PUT
 	@Path("doctor")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String updateDoctor(DoctorModel obj) throws Exception {
 		DoctorController.getInstance().update(obj);
 		return "doctor Updated";

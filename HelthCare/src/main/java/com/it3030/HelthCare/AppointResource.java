@@ -2,6 +2,7 @@ package com.it3030.HelthCare;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,6 +35,7 @@ public class AppointResource {
 
 	@POST
 	@Path("appointment")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String saveappointment(AppointModel obj) throws Exception {
 		if (DoctorController.getInstance().chekDoctorIdAvailability(obj.getDoc_id())) {
 			return "doctor id not valid";
@@ -48,6 +50,7 @@ public class AppointResource {
 
 	@PUT
 	@Path("appointment")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String updateappointment(AppointModel obj) throws Exception {
 		if (DoctorController.getInstance().chekDoctorIdAvailability(obj.getDoc_id())) {
 			return "doctor id not valid";

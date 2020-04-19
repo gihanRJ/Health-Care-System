@@ -2,6 +2,7 @@ package com.it3030.HelthCare;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,6 +35,7 @@ public class PatientResource {
 
 	@POST
 	@Path("patient")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String savePatient(PatientModel obj) throws Exception {
 		if (StockController.getInstance().chekStockIdAvailability(obj.getStock_id())) {
 			return "stock id is not valid";
@@ -46,6 +48,7 @@ public class PatientResource {
 
 	@PUT
 	@Path("patient")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String updatePatient(PatientModel obj) throws Exception {
 		if (StockController.getInstance().search(obj.getStock_id()).getStock_id() == 0) {
 			return "stock id is not valid";

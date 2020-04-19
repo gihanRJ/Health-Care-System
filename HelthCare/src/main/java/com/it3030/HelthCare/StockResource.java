@@ -2,6 +2,7 @@ package com.it3030.HelthCare;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -33,6 +34,7 @@ public class StockResource {
 
 	@POST
 	@Path("stock")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String saveStock(StockModel obj) throws Exception {
 		StockController.getInstance().save(obj);
 		return "stock Saved";
@@ -40,6 +42,7 @@ public class StockResource {
 
 	@PUT
 	@Path("stock")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String updateStock(StockModel obj) throws Exception {
 		StockController.getInstance().update(obj);
 		return "stock Updated";
